@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 def encrypt(text, n):
     if bool(text and text.strip()) == False or None or n <= 0:
         print(text)
@@ -57,24 +60,50 @@ def decrypt(text, n):
 def mostCommon(text):
     mass = text.split()
     # print(temp)
+    result0 = []
+    result = []
     temp = []
     for i in range(len(mass)):
         if (mass[i] and mass[i].strip()) == False \
                 or mass[i].isnumeric() == True \
                 or any(map(str.isdigit, mass[i])) == True:
-            print('udalit`', mass[i])
+            pass
         elif "'" in mass[i]:
-            print('GJ! --> ', mass[i])
+            # print('GJ! --> ', mass[i])
             temp.append(mass[i])
+    # print(temp)
+    temp1 = Counter(temp)
+    # print(temp1)
+    temp2 = temp1.values()
+    # print(temp2)
+    val = list(temp1.values())
+    res = []
+    for i in range(3):
+        tmp = max(val)
+        if tmp < 2:
+            print('Something went wrong...', result0)
+            return result0
         else:
-            print('udalit`', mass[i])
-    print(temp)
-    for i in range(len(temp)):
-        for j in range(len(temp) - 1, 0, -1):
-            print(i, j, temp[j])
-            if i!=j and temp[i] == temp[j]:
-
-    return 'result'
+            res.append(tmp)
+            val.remove(tmp)
+            # print(res)
+            result.append(list(temp1.keys())[i])
+    print('Result: ', result)
+    # i = 0
+    # while i < 3:
+    #     if int(list(temp2)[i]) < 2:
+    #         print(int(list(temp1.values())[i]), i, temp1.values())
+    #         print(result0)
+    #         return result0
+        # print(list(temp1.keys())[i])
+        # result.append(list(temp1.keys())[i])
+        # i += 1
+    # for i in range(len(temp)):
+    #     for j in range(len(temp) - 1, 0, -1):
+    #         print(i, j, temp[j])
+    #         if i!=j and temp[i] == temp[j]:
+    #             count[i] =
+    return result
 
 
 # print('===Шифр моноподстановки===')
@@ -88,7 +117,8 @@ def mostCommon(text):
 # print('===============================')
 
 
-textForDef = "hi9, h9'ow 'you hi y'o'u a're a're  'you 7are8 'are 'you hi, ,8'8   , &f ?are"
+textForDef = "hi9, h9'ow a're 'you hi y'o'u a're  a're a're a're a're  'you 'you 7are8 'are  'are 'you hi, ,8'8   , &f ?are"
 
+print('===============================')
 mostCommon(textForDef)
 print('===============================')
