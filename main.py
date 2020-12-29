@@ -58,11 +58,10 @@ def decrypt(text, n):
 
 
 def mostCommon(text):
-    mass = text.split()
-    # print(temp)
-    result0 = []
     result = []
     temp = []
+    res = []
+    mass = text.lower().split()
     for i in range(len(mass)):
         if (mass[i] and mass[i].strip()) == False \
                 or mass[i].isnumeric() == True \
@@ -71,54 +70,38 @@ def mostCommon(text):
         elif "'" in mass[i]:
             # print('GJ! --> ', mass[i])
             temp.append(mass[i])
-    # print(temp)
     temp1 = Counter(temp)
-    # print(temp1)
-    temp2 = temp1.values()
-    # print(temp2)
     val = list(temp1.values())
-    res = []
+    if len(val) < 3:
+        print('Something went wrong...', result)
+        return result
     for i in range(3):
         tmp = max(val)
-        if tmp < 2:
-            print('Something went wrong...', result0)
-            return result0
-        else:
-            res.append(tmp)
-            val.remove(tmp)
-            # print(res)
-            result.append(list(temp1.keys())[i])
+        res.append(tmp)
+        val.remove(tmp)
+        result.append(list(temp1.keys())[i])
     print('Result: ', result)
-    # i = 0
-    # while i < 3:
-    #     if int(list(temp2)[i]) < 2:
-    #         print(int(list(temp1.values())[i]), i, temp1.values())
-    #         print(result0)
-    #         return result0
-        # print(list(temp1.keys())[i])
-        # result.append(list(temp1.keys())[i])
-        # i += 1
-    # for i in range(len(temp)):
-    #     for j in range(len(temp) - 1, 0, -1):
-    #         print(i, j, temp[j])
-    #         if i!=j and temp[i] == temp[j]:
-    #             count[i] =
     return result
 
 
-# print('===Шифр моноподстановки===')
-# textForEncrypt = input(' Введите входные данные:')
-# num = int(input(' Введите число конкатенаций:'))
-#
-# textForDecrypt = encrypt(textForEncrypt, num)[num - 1]
-# if (textForDecrypt and textForDecrypt.strip()) != False:
-#     print('Decrypt:')
-#     decrypt(textForDecrypt, num)
-# print('===============================')
+print('===Шифр моноподстановки===')
+
+textForEncrypt = input(' Введите входные данные:')
+num = int(input(' Введите число конкатенаций:'))
+
+if encrypt(textForEncrypt, num) == textForEncrypt:
+    pass
+else:
+    textForDecrypt = encrypt(textForEncrypt, num)[num - 1]
+    if (textForDecrypt and textForDecrypt.strip()) != False:
+        print('Decrypt:')
+        decrypt(textForDecrypt, num)
+
+print('==================================')
 
 
-textForDef = "hi9, h9'ow a're 'you hi y'o'u a're  a're a're a're a're  'you 'you 7are8 'are  'are 'you hi, ,8'8   , &f ?are"
+textForDef = input('Введите текст для вычисления 3х наиболее часто встречаемых слов :)\n')
 
-print('===============================')
+print('==================================')
 mostCommon(textForDef)
-print('===============================')
+print('==================================')
