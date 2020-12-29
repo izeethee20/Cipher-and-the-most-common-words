@@ -54,10 +54,41 @@ def decrypt(text, n):
     return decryptedText
 
 
-textForEncrypt = input('Введите входные данные:')
-num = int(input('Введите число конкатенаций:'))
+def mostCommon(text):
+    mass = text.split()
+    # print(temp)
+    temp = []
+    for i in range(len(mass)):
+        if (mass[i] and mass[i].strip()) == False \
+                or mass[i].isnumeric() == True \
+                or any(map(str.isdigit, mass[i])) == True:
+            print('udalit`', mass[i])
+        elif "'" in mass[i]:
+            print('GJ! --> ', mass[i])
+            temp.append(mass[i])
+        else:
+            print('udalit`', mass[i])
+    print(temp)
+    for i in range(len(temp)):
+        for j in range(len(temp) - 1, 0, -1):
+            print(i, j, temp[j])
+            if i!=j and temp[i] == temp[j]:
 
-textForDecrypt = encrypt(textForEncrypt, num)[num - 1]
-if (textForDecrypt and textForDecrypt.strip()) != False:
-    print('Decrypt:')
-    decrypt(textForDecrypt, num)
+    return 'result'
+
+
+# print('===Шифр моноподстановки===')
+# textForEncrypt = input(' Введите входные данные:')
+# num = int(input(' Введите число конкатенаций:'))
+#
+# textForDecrypt = encrypt(textForEncrypt, num)[num - 1]
+# if (textForDecrypt and textForDecrypt.strip()) != False:
+#     print('Decrypt:')
+#     decrypt(textForDecrypt, num)
+# print('===============================')
+
+
+textForDef = "hi9, h9'ow 'you hi y'o'u a're a're  'you 7are8 'are 'you hi, ,8'8   , &f ?are"
+
+mostCommon(textForDef)
+print('===============================')
